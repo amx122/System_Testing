@@ -1,0 +1,45 @@
+﻿<Window x:Class="Kursovva.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Реєстрація" Height="500" Width="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Border CornerRadius="20" Background="White" MouseDown="Window_MouseDown">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3"/>
+        </Border.Effect>
+
+        <Grid Margin="30">
+            <StackPanel VerticalAlignment="Center">
+                <materialDesign:PackIcon Kind="AccountPlus" Width="50" Height="50" Foreground="#673AB7" HorizontalAlignment="Center"/>
+                <TextBlock Text="Створити акаунт" FontSize="24" FontWeight="Bold" Foreground="#444" 
+                           HorizontalAlignment="Center" Margin="0,10,0,30"/>
+
+                <TextBox x:Name="txtRegLogin" materialDesign:HintAssist.Hint="Придумайте Логін" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,0,0,15"/>
+
+                <TextBox x:Name="txtRegName" materialDesign:HintAssist.Hint="Ваше ПІБ (Прізвище Ім'я)" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,0,0,15"/>
+
+                <PasswordBox x:Name="txtRegPass" materialDesign:HintAssist.Hint="Придумайте Пароль" 
+                             Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Margin="0,0,0,25"/>
+
+                <Button Content="ЗАРЕЄСТРУВАТИСЯ" Click="BtnRegister_Click"
+                        Style="{StaticResource MaterialDesignRaisedButton}" Height="45" FontSize="16"/>
+
+                <Button Content="Вже маю акаунт" Click="BtnBack_Click"
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        Margin="0,10,0,0" Foreground="Gray"/>
+            </StackPanel>
+
+            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="-10,-10,-10,0"
+                    Style="{StaticResource MaterialDesignIconForegroundButton}"
+                    Click="BtnClose_Click" ToolTip="Закрити">
+                <materialDesign:PackIcon Kind="Close" Foreground="Gray"/>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

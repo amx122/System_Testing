@@ -1,0 +1,16 @@
+﻿using Microsoft.EntityFrameworkCore;
+using System.IO;
+
+public class AppDbContext : DbContext
+{
+    public DbSet<User> Users { get; set; }
+    public DbSet<Test> Tests { get; set; }
+    public DbSet<Question> Questions { get; set; }
+    public DbSet<Answer> Answers { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // БД буде створена поруч з .exe файлом
+        optionsBuilder.UseSqlite($"Data Source=testing_system.db");
+    }
+}

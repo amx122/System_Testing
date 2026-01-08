@@ -1,0 +1,38 @@
+﻿<Window x:Class="Kursovva.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Loading" Height="300" Width="500"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Border CornerRadius="20" Background="#2E3047">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="10" Opacity="0.4"/>
+        </Border.Effect>
+
+        <Grid>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <materialDesign:PackIcon Kind="School" Width="50" Height="50" Foreground="White" VerticalAlignment="Center"/>
+                    <TextBlock Text="SmartTest" Foreground="White" FontSize="36" FontWeight="Bold" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <TextBlock Text="System" Foreground="#AAAAAA" FontSize="18" HorizontalAlignment="Right" Margin="0,-25,10,0" FontStyle="Italic"/>
+
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Value="0" IsIndeterminate="True"
+                             Width="50" Height="50"
+                             Foreground="#673AB7"
+                             Margin="0,30,0,20"/>
+
+                <TextBlock Text="Завантаження компонентів..." Foreground="Gray" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,15">
+                <TextBlock Text="Курсова робота 2026" Foreground="#555555" FontSize="10" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

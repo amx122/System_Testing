@@ -1,0 +1,316 @@
+﻿<Window x:Class="Kursovva.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="SmartTest System" Height="720" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#2E3047">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,40">
+                    <materialDesign:PackIcon Kind="School" Width="35" Height="35" Foreground="White" VerticalAlignment="Center"/>
+                    <TextBlock Text="SmartTest" Foreground="White" FontSize="22" FontWeight="Bold" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="10,0">
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                                 Margin="0,5" Height="50" Foreground="White"
+                                 Content="  ГОЛОВНА" IsChecked="True" FontSize="14"
+                                 Click="Menu_Home_Click" BorderBrush="{x:Null}"/>
+
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                                 Margin="0,5" Height="50" Foreground="White"
+                                 Content="  ВСІ ТЕСТИ" FontSize="14"
+                                 Click="Menu_Tests_Click" BorderBrush="{x:Null}"/>
+
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                                 Margin="0,5" Height="50" Foreground="White"
+                                 Content="  РЕЗУЛЬТАТИ" FontSize="14"
+                                 Click="Menu_Results_Click" BorderBrush="{x:Null}"/>
+
+                    <RadioButton x:Name="BtnAdminMenu" Style="{StaticResource MaterialDesignTabRadioButton}"
+                                 Margin="0,5" Height="50" Foreground="#FF8A80"
+                                 Content="  КОРИСТУВАЧІ" FontSize="14" FontWeight="Bold"
+                                 Click="BtnAdminPanel_Click" Visibility="Collapsed" BorderBrush="{x:Null}"/>
+
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                            Margin="0,20,0,5" Height="40" Foreground="Gray"
+                            HorizontalAlignment="Left" Width="240"
+                            Click="BtnAbout_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="InformationOutline" Width="20" Height="20" Margin="10,0"/>
+                            <TextBlock Text="Про програму" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <Button Grid.Row="2" x:Name="btnLogout" Click="BtnLogout_Click"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        HorizontalAlignment="Stretch" Margin="20,0,20,30" Height="45">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Logout" Width="20" Height="20" Foreground="#FF8A80"/>
+                        <TextBlock Text="ВИХІД" Foreground="#FF8A80" Margin="10,0,0,0" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1" Background="#F5F5F5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <materialDesign:Card Grid.Row="0" Margin="20" Padding="15" UniformCornerRadius="8" materialDesign:ElevationAssist.Elevation="Dp1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountCircle" Width="45" Height="45" Foreground="#673AB7" VerticalAlignment="Center"/>
+                        <StackPanel Margin="15,0,0,0" VerticalAlignment="Center">
+                            <TextBlock x:Name="txtUserName" Text="Завантаження..." FontSize="18" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="txtUserRole" Text="Роль..." Foreground="Gray" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <Button x:Name="BtnCreateTest" Click="BtnCreateTest_Click"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Content="+ НОВИЙ ТЕСТ" Margin="0,0,15,0" Height="40"
+                                Visibility="Collapsed" Background="#4CAF50" BorderBrush="#4CAF50"/>
+
+                        <Button x:Name="BtnProfile" Click="BtnProfile_Click"
+                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                ToolTip="Налаштування профілю" Height="40" Width="40" Padding="0" Margin="0,0,10,0">
+                            <materialDesign:PackIcon Kind="Cog" Width="22" Height="22" Foreground="Gray"/>
+                        </Button>
+
+                        <Button Style="{StaticResource MaterialDesignOutlinedButton}" 
+                                Click="BtnRefresh_Click" Height="40" Width="40" Padding="0"
+                                ToolTip="Оновити дані">
+                            <materialDesign:PackIcon Kind="Refresh" Width="20" Height="20"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+            <Grid Grid.Row="1">
+
+                <ScrollViewer x:Name="DashboardView" VerticalScrollBarVisibility="Auto" Visibility="Visible">
+                    <Grid Margin="30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="txtWelcome" Text="З поверненням!" FontSize="28" FontWeight="Bold" Foreground="#444" Margin="0,0,0,30"/>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:Card Grid.Column="0" Background="#673AB7" Foreground="White" Padding="20" UniformCornerRadius="10" Margin="0,0,10,0">
+                                <StackPanel>
+                                    <materialDesign:PackIcon Kind="ChartBar" Width="40" Height="40" HorizontalAlignment="Right" Opacity="0.8"/>
+                                    <TextBlock x:Name="lblStat1Value" Text="0" FontSize="36" FontWeight="Bold"/>
+                                    <TextBlock x:Name="lblStat1Title" Text="Проходжень" FontSize="14" Opacity="0.8"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+                            <materialDesign:Card Grid.Column="1" Background="#00BCD4" Foreground="White" Padding="20" UniformCornerRadius="10" Margin="10,0">
+                                <StackPanel>
+                                    <materialDesign:PackIcon Kind="School" Width="40" Height="40" HorizontalAlignment="Right" Opacity="0.8"/>
+                                    <TextBlock x:Name="lblStat2Value" Text="0" FontSize="36" FontWeight="Bold"/>
+                                    <TextBlock x:Name="lblStat2Title" Text="Показник" FontSize="14" Opacity="0.8"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+                            <materialDesign:Card Grid.Column="2" Background="#FF5252" Foreground="White" Padding="20" UniformCornerRadius="10" Margin="10,0,0,0">
+                                <StackPanel>
+                                    <materialDesign:PackIcon Kind="ClockOutline" Width="40" Height="40" HorizontalAlignment="Right" Opacity="0.8"/>
+                                    <TextBlock x:Name="lblStat3Value" Text="0" FontSize="36" FontWeight="Bold"/>
+                                    <TextBlock x:Name="lblStat3Title" Text="Всього" FontSize="14" Opacity="0.8"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+                        </Grid>
+
+                        <materialDesign:Card Grid.Row="2" Margin="0,30,0,0" Padding="20" UniformCornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Швидкі дії" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                                <WrapPanel>
+                                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" Content="Перейти до тестів" Click="Menu_Tests_Click" Margin="0,0,10,0"/>
+                                    <Button Style="{StaticResource MaterialDesignOutlinedButton}" Content="Подивитись результати" Click="Menu_Results_Click"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </materialDesign:Card>
+                    </Grid>
+                </ScrollViewer>
+
+                <ScrollViewer x:Name="TestsView" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+                    <StackPanel>
+                        <materialDesign:Card Margin="20,0,20,10" Padding="10" UniformCornerRadius="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="Magnify" VerticalAlignment="Center" Foreground="Gray" Width="25" Height="25" Margin="5,0"/>
+                                <TextBox x:Name="txtSearchTests" Grid.Column="1" 
+                                         materialDesign:HintAssist.Hint="Пошук тесту..."
+                                         BorderThickness="0" FontSize="16" VerticalAlignment="Center"
+                                         TextChanged="TxtSearchTests_TextChanged"/>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <ItemsControl x:Name="TestsList" Margin="20,0,20,20">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Card Width="300" Margin="10" Padding="0" UniformCornerRadius="10" materialDesign:ElevationAssist.Elevation="Dp2">
+                                        <StackPanel>
+                                            <Border Background="{Binding ColorHex}" Height="120" CornerRadius="10,10,0,0">
+                                                <Grid>
+                                                    <materialDesign:PackIcon Kind="FileDocumentEditOutline" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"
+                                                                Visibility="{Binding DataContext.IsTeacherVisible, RelativeSource={RelativeSource AncestorType=Window}}">
+                                                        <Button Style="{StaticResource MaterialDesignIconForegroundButton}"
+                                                                ToolTip="Редагувати" Width="30" Height="30"
+                                                                Click="BtnEditTest_Click" Tag="{Binding Id}">
+                                                            <materialDesign:PackIcon Kind="Pencil" Foreground="White" Width="20" Height="20"/>
+                                                        </Button>
+                                                        <Button Style="{StaticResource MaterialDesignIconForegroundButton}"
+                                                                ToolTip="Видалити" Width="30" Height="30" Margin="5,0,0,0"
+                                                                Click="BtnDeleteTest_Click" Tag="{Binding Id}">
+                                                            <materialDesign:PackIcon Kind="Delete" Foreground="White" Width="20" Height="20"/>
+                                                        </Button>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                            <StackPanel Margin="20">
+                                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" Height="50" TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock Text="{Binding Description}" Foreground="Gray" Margin="0,0,0,15" Height="40" TextTrimming="CharacterEllipsis" FontSize="13"/>
+                                                <Separator Margin="0,0,0,10" Background="#EEE"/>
+                                                <DockPanel>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <materialDesign:PackIcon Kind="ClockTimeFourOutline" Foreground="Gray" Width="16" Height="16" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="{Binding TimeLimitMinutes, StringFormat={}{0} хв}" Margin="5,0,0,0" Foreground="Gray" VerticalAlignment="Center" FontSize="13"/>
+                                                    </StackPanel>
+                                                    <Button Style="{StaticResource MaterialDesignRaisedButton}" 
+                                                            Content="ПОЧАТИ" HorizontalAlignment="Right" Width="100" Height="36"
+                                                            Click="BtnStartTest_Click" Tag="{Binding Id}"/>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <materialDesign:Card x:Name="ResultsView" Visibility="Collapsed" Margin="30,10,30,30" Padding="0" UniformCornerRadius="8" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" BorderBrush="#EEE" BorderThickness="0,0,0,1" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <materialDesign:PackIcon Kind="ChartBox" Foreground="#555" Width="24" Height="24" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Журнал" FontSize="18" FontWeight="Bold" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="#555"/>
+                                </StackPanel>
+
+                                <TextBox x:Name="txtSearchStudent" Grid.Column="1" Margin="30,0"
+                                         materialDesign:HintAssist.Hint="Пошук (Студент або Тест)..."
+                                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                         VerticalAlignment="Center" Height="40" Padding="10,8"
+                                         TextChanged="TxtSearchResults_TextChanged"/>
+
+                                <Button Grid.Column="2" Content="Експорт" Click="BtnExport_Click"
+                                        Style="{StaticResource MaterialDesignOutlinedButton}" Height="32"/>
+                            </Grid>
+                        </Border>
+
+                        <DataGrid x:Name="ResultsGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" 
+                                  SelectionMode="Single" SelectionUnit="FullRow"
+                                  materialDesign:DataGridAssist.CellPadding="15 10 10 10" 
+                                  materialDesign:DataGridAssist.ColumnHeaderPadding="15 10 10 10"
+                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#F0F0F0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Студент" Binding="{Binding StudentName}" Width="200" FontWeight="SemiBold"/>
+                                <DataGridTextColumn Header="Назва тесту" Binding="{Binding ExamName}" Width="*"/>
+                                <DataGridTextColumn Header="Дата" Binding="{Binding DateTaken, StringFormat=dd.MM.yyyy HH:mm}" Width="150"/>
+                                <DataGridTextColumn Header="Бали" Binding="{Binding ScoreText}" Width="100"/>
+                                <DataGridTextColumn Header="Результат" Binding="{Binding Percentage, StringFormat={}{0}%}" Width="120" FontWeight="Bold">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsPassed}" Value="False">
+                                                    <Setter Property="Foreground" Value="#F44336"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsPassed}" Value="True">
+                                                    <Setter Property="Foreground" Value="#4CAF50"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Border Grid.Row="2" Padding="15" BorderBrush="#EEE" BorderThickness="0,1,0,0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Content="ДЕТАЛЬНИЙ АНАЛІЗ ПОМИЛОК" 
+                                        Click="BtnViewDetails_Click"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Background="#673AB7" BorderBrush="#673AB7"
+                                        Width="260" Height="40"/>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </materialDesign:Card>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

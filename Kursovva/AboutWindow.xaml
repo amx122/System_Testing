@@ -1,0 +1,52 @@
+﻿<Window x:Class="Kursovva.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Про програму" Height="350" Width="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Border CornerRadius="15" Background="White" MouseDown="Window_MouseDown">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20" ShadowDepth="5" Opacity="0.2"/>
+        </Border.Effect>
+
+        <Grid Margin="20">
+            <StackPanel>
+                <materialDesign:PackIcon Kind="InformationOutline" Width="50" Height="50" Foreground="#673AB7" HorizontalAlignment="Center"/>
+                <TextBlock Text="SmartTest System" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,5"/>
+                <TextBlock Text="Версія 1.0" FontSize="12" Foreground="Gray" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <Separator Margin="10"/>
+
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Розробник:" FontWeight="Bold" Margin="0,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Anonymous" Margin="10,5,0,5" TextWrapping="Wrap"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Група:" FontWeight="Bold" Margin="0,5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="КН" Margin="10,5,0,5"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Предмет:" FontWeight="Bold" Margin="0,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Об'єктно-орієнтоване програмування" Margin="10,5,0,5" TextWrapping="Wrap"/>
+                </Grid>
+
+                <Separator Margin="10"/>
+
+                <Button Content="ЗРОЗУМІЛО" Click="BtnClose_Click" 
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

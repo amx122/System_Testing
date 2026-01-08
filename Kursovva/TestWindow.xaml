@@ -1,0 +1,85 @@
+﻿<Window x:Class="Kursovva.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Проходження тесту" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.Row="0" Padding="15" Background="#2E3047" Foreground="White" UniformCornerRadius="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="FileEditOutline" Width="25" Height="25" Margin="0,0,10,0"/>
+                    <TextBlock Text="Тестування" FontSize="18" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="ClockOutline" Width="25" Height="25" Margin="0,0,10,0"/>
+                    <TextBlock x:Name="txtTimer" Text="00:00" FontSize="20" FontWeight="Bold" Foreground="#FF8A80"/>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="20">
+            <StackPanel MaxWidth="800" HorizontalAlignment="Center">
+
+                <materialDesign:Card Padding="20" Margin="0,0,0,20" UniformCornerRadius="10">
+                    <TextBlock x:Name="txtQuestionText" 
+                               Text="Завантаження питання..." 
+                               FontSize="22" 
+                               TextWrapping="Wrap" 
+                               FontWeight="SemiBold"/>
+                </materialDesign:Card>
+
+                <GroupBox Header="Варіанти відповіді" 
+                          Style="{DynamicResource MaterialDesignCardGroupBox}"
+                          Margin="0,0,0,20">
+                    <StackPanel x:Name="AnswersPanel" Margin="10">
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="2" BorderBrush="#EEE" BorderThickness="0,1,0,0" Padding="20" Background="#FAFAFA">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnPrev" 
+                        Click="BtnPrev_Click"
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        Content="НАЗАД"
+                        Width="120" Height="45"/>
+
+                <Button x:Name="BtnNext" Grid.Column="2"
+                        Click="BtnNext_Click"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Content="ДАЛІ"
+                        Width="150" Height="45"
+                        Background="#673AB7" BorderBrush="#673AB7"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>
